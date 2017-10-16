@@ -7,90 +7,90 @@
 */
 
 module.exports = function (grunt) {
-  
-    grunt.initConfig({
-      responsive_images: {
-        dev: {
-          options: {
-            engine: 'im',
-            sizes: [{
-  
-                // Change these:
-                name: 'small',
-                width: 800,
-                suffix: '',
-                // suffix: '_w800',
-                quality: 40
-  
-              },
-              {
-  
-                // Change these:
-                name: 'medium',
-                width: 1000,
-                // suffix: '_w800',
-                quality: 40
-  
-              },
-              {
-  
-                // Change these:
-                name: 'large',
-                width: 1600,
-                // suffix: '_w800',
-                quality: 60
-  
-              }
-            ]
-          },
-  
-          /*
-          You don't need to change this part if you don't change
-          the directory structure.
-          */
-          files: [{
-            expand: true,
-            src: ['*.{gif,jpg,png}'],
-            cwd: 'images_src/',
-            dest: 'img/'
-          }]
-        }
+
+  grunt.initConfig({
+    responsive_images: {
+      dev: {
+        options: {
+          engine: 'im',
+          sizes: [{
+
+              // Change these:
+              name: 'small',
+              width: 800,
+              suffix: '',
+              // suffix: '_w800',
+              quality: 40
+
+            },
+            {
+
+              // Change these:
+              name: 'medium',
+              width: 1000,
+              // suffix: '_w800',
+              quality: 40
+
+            },
+            {
+
+              // Change these:
+              name: 'large',
+              width: 1600,
+              // suffix: '_w800',
+              quality: 60
+
+            }
+          ]
+        },
+
+        /*
+        You don't need to change this part if you don't change
+        the directory structure.
+        */
+        files: [{
+          expand: true,
+          src: ['*.{gif,jpg,png}'],
+          cwd: 'images_src/',
+          dest: 'img/'
+        }]
+      }
+    },
+
+    /* Clear out the images directory if it exists */
+    clean: {
+      dev: {
+        src: ['img'],
       },
-  
-      /* Clear out the images directory if it exists */
-      clean: {
-        dev: {
-          src: ['img'],
+    },
+
+    /* Generate the images directory if it is missing */
+    mkdir: {
+      dev: {
+        options: {
+          create: ['img']
         },
       },
-  
-      /* Generate the images directory if it is missing */
-      mkdir: {
-        dev: {
-          options: {
-            create: ['img']
-          },
-        },
+    },
+
+    /* Copy the "fixed" images that don't go through processing into the images/directory */
+    copy: {
+      dev: {
+        files: [{
+          expand: true,
+          cwd: 'images_src/fixed/',
+          // src: 'images_src/fixed/*.{gif,jpg,png}',
+          src: '*.{gif,jpg,png}',
+          dest: 'img/fixed/'
+        }]
       },
-  
-      /* Copy the "fixed" images that don't go through processing into the images/directory */
-      copy: {
-        dev: {
-          files: [{
-            expand: true,
-            cwd: 'images_src/fixed/',
-            // src: 'images_src/fixed/*.{gif,jpg,png}',
-            src: '*.{gif,jpg,png}',
-            dest: 'img/fixed/'
-          }]
-        },
-      },
-    });
-  
-    grunt.loadNpmTasks('grunt-responsive-images');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-mkdir');
-    grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
-  
-  };
+    },
+  });
+
+  grunt.loadNpmTasks('grunt-responsive-images');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-mkdir');
+  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
+
+};
