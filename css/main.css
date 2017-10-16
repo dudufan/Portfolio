@@ -72,6 +72,10 @@ a {
     color: rgba(0, 0, 0, 0.82);
 }
 
+article {
+    border-bottom: 1px solid #ddd;
+}
+
 #banner img {
     width: 100%;
     margin-top: 0.5em;
@@ -87,8 +91,18 @@ a {
     flex-wrap: wrap;
 }
 
+.item picture img {
+    /* width:100%;
+    height: 100%; */
+    /* max-width: 100%;
+    min-width: 100%; */
+}
+
+.item p {
+    margin: 0.3em auto 2em auto;
+}
 footer {
-    margin: 0 auto;
+    margin: 1em auto;
 }
 
 #social a {
